@@ -21,12 +21,32 @@ function RecipeContainer() {
 
     function populateRecipes() {
         return recipesToDisplay.map((recipe)=>
-            <Recipe recipe={recipe} key={recipe.id}/>
+            <Recipe recipe={recipe} key={recipe.id} updateRecipe={updateRecipe}/>
         )
     }
 
     function handleChange(e){
         setCurrentSearch(e.target.value)
+    }
+
+    //UPDATE
+
+    function updateRecipe(recipe){
+        fetch(BASE_URL + 'recipes/' + recipe.id, {
+            method: "PATCH",
+            body: JSON.stringify(recipe),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                  }
+        });
+        const newRecipe = recipes.map((r) => {
+            if (r.id === recipe.id){
+                r = recipe
+            }
+            return r
+        })
+        setRecipes(newRecipe)
     }
 
     return (
