@@ -37,6 +37,10 @@ function Recipe({recipe, updateRecipe}) {
                     <input name="name" value={newRecipe.name} onChange={handleChange}></input><br/>
                     <input name="preparation_time" value={newRecipe.preparation_time} onChange={handleChange}></input><br/>
                     <input name="calories" value={newRecipe.calories} onChange={handleChange}></input><br/>
+                    <input name="image_url" value={newRecipe.image_url} onChange={handleChange}></input><br/>
+                    <input name="video_url" value={newRecipe.video_url} onChange={handleChange}></input><br/>
+                    <input name="description" value={newRecipe.description} onChange={handleChange}></input><br/>
+                    <textarea name="instructions" rows="25" cols="100" value={newRecipe.instructions} onChange={handleChange}></textarea><br/>
                     <button type="submit">Update Recipe</button><br/>
                     </form>
                 </>
