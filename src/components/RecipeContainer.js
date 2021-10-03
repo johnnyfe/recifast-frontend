@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '../constrains';
 import Recipe from './Recipe';
+// import RecipeForm from './RecipeForm';
 
 function RecipeContainer() {
 
@@ -21,7 +22,7 @@ function RecipeContainer() {
 
     function populateRecipes() {
         return recipesToDisplay.map((recipe)=>
-            <Recipe recipe={recipe} key={recipe.id} updateRecipe={updateRecipe}/>
+            <Recipe recipe={recipe} key={recipe.id} updateRecipe={updateRecipe} deleteRecipe={deleteRecipe}/>
         )
     }
 
@@ -49,10 +50,25 @@ function RecipeContainer() {
         setRecipes(newRecipe)
     }
 
+    //DELETE
+
+    function deleteRecipe(recipe) {
+        fetch(BASE_URL + 'recipes/' + recipe.id, {
+            method: "DELETE"
+        })
+        const recipeToDelete = recipe.filter(r => r.id !== recipe.id)
+        setRecipes(recipeToDelete)
+    }
+
+    
+
     return (
-        <div>
-            <p>Find recipe:</p>
-            <input onChange={handleChange}></input>
+        <div className="recipes-container">
+            <div className="recipe-filter">
+               <p>Find recipe:</p>
+                <input onChange={handleChange}></input> 
+            </div>
+            {/* <div><RecipeForm handleAddRecipe={handleAddRecipe}/></div> */}
             <div className="recipe-container">{recipes && populateRecipes()}</div>
         </div>
     );

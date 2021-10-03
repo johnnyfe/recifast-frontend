@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Recipe({recipe, updateRecipe}) {
+function Recipe({recipe, updateRecipe, deleteRecipe}) {
 
     const [newRecipe, setNewRecipe] = useState({...recipe});
     const [editMode, setEditMode] = useState(false);
@@ -42,6 +42,7 @@ function Recipe({recipe, updateRecipe}) {
                     <input name="description" value={newRecipe.description} onChange={handleChange}></input><br/>
                     <textarea name="instructions" rows="25" cols="100" value={newRecipe.instructions} onChange={handleChange}></textarea><br/>
                     <button type="submit">Update Recipe</button><br/>
+                    <button onClick={() => deleteRecipe(recipe)}>Delete Recipe</button>
                     </form>
                 </>
             )}
