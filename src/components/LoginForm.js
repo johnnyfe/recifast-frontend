@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react'
+import { BASE_URL } from '../constrains';
 
 function LoginForm({ onLogin }) {
 
@@ -11,7 +12,7 @@ function LoginForm({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/login", {
+    fetch(BASE_URL + "login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,10 +29,12 @@ function LoginForm({ onLogin }) {
   }
     return (
         <form onSubmit={handleSubmit}>
+            <label>Username:</label>
             <input type="text"id="username" autoComplete="off" value={username} onChange={(e) => setUsername(e.target.value)}/>
+            <label>Password:</label>
             <input type="password" id="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-            <button>{isLoading ? "Loading..." : "Login"}</button>
-            {errors.map((error) => (<p key={error.id}>{error}</p>))}
+            <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
+            {/* {errors.map((error) => (<p key={error.id}>{error}</p>))} */}
         </form>
     );
 }

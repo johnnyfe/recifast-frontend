@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import './App.css';
 import RecipeContainer from "./components/RecipeContainer";
 import Login from "./components/Login";
+import { BASE_URL } from "./constrains";
 
 function App() {
 
@@ -10,14 +11,16 @@ function App() {
 
   useEffect(() => {
     // auto-login
-    fetch("/me").then((r) => {
+    fetch(BASE_URL + "me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
     });
   }, []);
 
-  if (!user) return <Login onLogin={setUser} />;
+  console.log(user)
+
+  // if (!user) return <Login onLogin={setUser} />;
 
   return (
     <Router>
