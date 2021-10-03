@@ -4,6 +4,7 @@ import './App.css';
 import RecipeContainer from "./components/RecipeContainer";
 import Login from "./components/Login";
 import { BASE_URL } from "./constrains";
+import NavBar from "./components/NavBar";
 
 function App() {
 
@@ -23,16 +24,18 @@ function App() {
   if (!user) return <Login onLogin={setUser} />;
 
   return (
-    <Router>
-      <div className="app-container">
-      <Switch>
-        <Route exact path="/">
-         <RecipeContainer/>
-        </Route>
-      </Switch>
-      </div>
-    </Router>
-  );
+    <>
+      <NavBar user={user} setUser={setUser}/>
+      <main>
+        <Switch>
+          <Route exact path="/">
+          <RecipeContainer/>
+          </Route>
+        </Switch>
+      </main>
+      
+    </>
+  )
 }
 
 export default App;

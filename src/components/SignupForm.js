@@ -38,7 +38,7 @@ function SignupForm({onLogin}) {
     });
   }
     return (
-        <div>
+        <form onSubmit={handleSubmit}>
             <label>Username:</label>
             <input type="text"id="username" autoComplete="off" value={username} onChange={(e) => setUsername(e.target.value)}/>
             <label>Password:</label>
@@ -53,7 +53,7 @@ function SignupForm({onLogin}) {
             <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)}/>
             <button type="submit">{isLoading ? "Loading..." : "Singup"}</button>
             {/* {errors.map((error) => (<p key={error.id}>{error}</p>))} */}
-        </div>
+        </form>  
     );
 }
 
