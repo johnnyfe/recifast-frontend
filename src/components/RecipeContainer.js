@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '../constrains';
 import Recipe from './Recipe';
-// import RecipeForm from './RecipeForm';
+import RecipeForm from './RecipeForm';
 
 function RecipeContainer() {
 
@@ -61,7 +61,11 @@ function RecipeContainer() {
         setRecipes(recipeToDelete)
     }
 
-    
+    function handleAddRecipe(newRecipe){
+        const updatedRecipe = ([...recipes, newRecipe])
+        return setRecipes(updatedRecipe)
+    }
+
 
     return (
         <div className="recipes-components-container">

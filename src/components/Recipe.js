@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CommentDetails from './CommentDetails';
-import { TextField, Input, Button } from '@material-ui/core';
+import { TextField, Input, Button, FormLabel } from '@material-ui/core';
 import IngredientDetails from './IngredientDetails';
 import { BASE_URL } from '../constrains';
 import IngredientForm from './IngredientForm';
@@ -84,10 +84,15 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
                 <>
                     <h3>Recipe Form:</h3>
                     <form onSubmit={handleUpdate}>
+                    <FormLabel>Name: </FormLabel>
                     <Input name="name" value={newRecipe.name} onChange={handleChange}/><br/>
+                    <FormLabel>Time: </FormLabel>
                     <Input name="preparation_time" value={newRecipe.preparation_time} onChange={handleChange}/><br/>
+                    <FormLabel>Calories: </FormLabel>
                     <Input name="calories" value={newRecipe.calories} onChange={handleChange}/><br/>
+                    <FormLabel>Image Url: </FormLabel>
                     <Input name="image_url" value={newRecipe.image_url} onChange={handleChange}/><br/>
+                    <FormLabel>Recipe Video Url: </FormLabel>
                     <Input name="video_url" value={newRecipe.video_url} onChange={handleChange}/><br/>
                     <Input name="description" value={newRecipe.description} onChange={handleChange}/><br/>
                     <TextField name="instructions" style ={{width: '75%'}} value={newRecipe.instructions} onChange={handleChange}/><br/>
@@ -96,7 +101,7 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
                     </form>
                 </>
             )}
-            <Button variant="contained" onClick={toggleEdit}>Modify Recipe</Button>
+            <Button variant="contained" onClick={toggleEdit}>Toggle Update Recipe</Button>
         </div>
     );
 }

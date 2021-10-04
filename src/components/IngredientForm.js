@@ -74,7 +74,7 @@ function IngredientForm({handleAddIngredient, recipe}) {
                 </form>
             </>
             )}
-            <Button variant='contained' onClick={toggleEdit}>Create New Ingredient</Button>
+            <Button variant='contained' onClick={toggleEdit}>Toggle Create New Ingredient</Button>
             </div>
         </div>
     );

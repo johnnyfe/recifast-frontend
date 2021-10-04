@@ -4,7 +4,6 @@ import Box from '@material-ui/core/Box';
 
 function CommentDetails({comment}) {
 
-    
     return (
         <div>
             <p>{comment.description}</p>
