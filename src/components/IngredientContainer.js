@@ -15,8 +15,26 @@ function IngredientContainer() {
 
     function populateIngredients() {
         return ingredients.map((ingredient)=>
-            <IngredientDetails  key={ingredient.id} ingredient={ingredient}/>
+            <IngredientDetails  key={ingredient.id} ingredient={ingredient} updateIngredient={updateIngredient}/>
         )
+    }
+
+    function updateIngredient(ingredient){
+        fetch(BASE_URL + 'ingredients/' + ingredient.id, {
+            method: "PATCH",
+            body: JSON.stringify(ingredient),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                  }
+        });
+        const newIngredient = ingredients.map((i) => {
+            if (i.id === ingredient.id){
+                i = ingredient
+            }
+            return i
+        })
+        setIngredients(newIngredient)
     }
 
 
