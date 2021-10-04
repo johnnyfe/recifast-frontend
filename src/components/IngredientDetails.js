@@ -34,6 +34,7 @@ function IngredientDetails({ingredient, updateIngredient}) {
             <p>{ingredient.portion} OZ</p>
             {editMode && (
                 <>
+                    <h3>Ingredient Form:</h3>
                     <form onSubmit={handleUpdate}>
                     <FormLabel>Name: </FormLabel>
                     <Input name="name" placeholder="Banana" value={newIngredient.name} onChange={handleChange}/><br/>
@@ -49,11 +50,11 @@ function IngredientDetails({ingredient, updateIngredient}) {
                     <Input name="price" placeholder="1...10000" value={newIngredient.price} onChange={handleChange}/><br/>
                     <FormLabel>Quantity: </FormLabel>
                     <Input name="quantity" placeholder="1...100" value={newIngredient.quantity} onChange={handleChange}/><br/>
-                    <Button type="submit" variant="contained">Update Ingredient</Button>
+                    <Button type="submit" variant="outlined">Update Ingredient</Button>
                     </form>
                 </>
             )}
-            <button  onClick={toggleEdit}>Modify Ingredient</button>
+            <Button variant="contained" onClick={toggleEdit}>Modify Ingredient</Button>
         </div>
     );
 }

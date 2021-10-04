@@ -50,30 +50,39 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
         setIngredients(newIngredient)
     }
 
+
     function handleAddIngredient(newIngredient){
         const updatedIngredient = ([...ingredients, newIngredient])
         return setIngredients(updatedIngredient)
     }
 
+    function handleSentenceSeparation(){
+        const arrayOfInstructions = recipe.instructions.split('\n')
+        return arrayOfInstructions
+    }
+
     
     return (
         <div>
-            <p>{recipe.name}</p>
-            <p>{recipe.preparation_time}</p>
-            <p>{recipe.calories}</p>
+            
+            <h2>Recipes</h2>
+            <b>{recipe.name}</b>
+            <p>{recipe.description}</p>
+            <p>Minutes to prepare: {recipe.preparation_time} mins</p>
+            <p>{recipe.calories} calories</p>
             <img src={recipe.image_url} alt={recipe.name} width="240px"></img>
             <iframe src={recipe.video_url} title={recipe.name}></iframe>
-            <p>{recipe.description}</p>
-            <p>{recipe.instructions}</p>
+            {handleSentenceSeparation().map((sentence) => <p>{sentence}</p>)}
             <h5>User:</h5>
             <p>{user}</p>
-            <h5>Comments:</h5>
+            <h2>Comments:</h2>
             {comments && comments.map((comment) => <CommentDetails key={comment.id} comment={comment}/>)}
-            <h5>Ingredients:</h5>
+            <h2>Ingredients:</h2>
             {ingredients && ingredients.map((ingredient) => <IngredientDetails key={ingredient.id} ingredient={ingredient} updateIngredient={updateIngredient}/>)}
             <IngredientForm handleAddIngredient={handleAddIngredient} recipe={recipe}/>
             {editMode && (
                 <>
+                    <h3>Recipe Form:</h3>
                     <form onSubmit={handleUpdate}>
                     <Input name="name" value={newRecipe.name} onChange={handleChange}/><br/>
                     <Input name="preparation_time" value={newRecipe.preparation_time} onChange={handleChange}/><br/>
@@ -87,7 +96,7 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
                     </form>
                 </>
             )}
-            <button onClick={toggleEdit}>Modify Recipe</button>
+            <Button variant="contained" onClick={toggleEdit}>Modify Recipe</Button>
         </div>
     );
 }
