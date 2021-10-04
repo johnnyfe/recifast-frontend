@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import CommentDetails from './CommentDetails';
 import { Input } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
+import IngredientDetails from './IngredientDetails';
+
 
 function Recipe({recipe, updateRecipe, deleteRecipe}) {
 
     const [newRecipe, setNewRecipe] = useState({...recipe});
     const [editMode, setEditMode] = useState(false);
     const [comments, setComment] = useState(recipe.comments)
-    const [user, setUser] = useState(recipe.user)
+    const [user, setUser] = useState(recipe.user.username)
     const [ingredients, setIngredients] = useState(recipe.ingredients)
 
 
@@ -30,7 +32,6 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
     }
 
     
-
     return (
         <div>
             <p>{recipe.name}</p>
@@ -40,8 +41,12 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
             <iframe src={recipe.video_url} title={recipe.name}></iframe>
             <p>{recipe.description}</p>
             <p>{recipe.instructions}</p>
+            <h5>User:</h5>
+            <p>{user}</p>
             <h5>Comments:</h5>
             {comments && comments.map((comment) => <CommentDetails key={comment.id} comment={comment}/>)}
+            <h5>Ingredients:</h5>
+            {ingredients && ingredients.map((ingredient) => <IngredientDetails key={ingredient.id} ingredient={ingredient}/>)}
             {editMode && (
                 <>
                     <form onSubmit={handleUpdate}>
