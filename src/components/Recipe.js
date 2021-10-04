@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import CommentDetails from './CommentDetails';
+import { Input } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
 function Recipe({recipe, updateRecipe, deleteRecipe}) {
 
     const [newRecipe, setNewRecipe] = useState({...recipe});
     const [editMode, setEditMode] = useState(false);
+    const [comments, setComment] = useState(recipe.comments)
+    const [user, setUser] = useState(recipe.user)
+    const [ingredients, setIngredients] = useState(recipe.ingredients)
+
+
 
     function handleChange(e){
         const updatedValue = {...newRecipe}
@@ -21,6 +29,7 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
         setEditMode(false);
     }
 
+    
 
     return (
         <div>
@@ -31,16 +40,18 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
             <iframe src={recipe.video_url} title={recipe.name}></iframe>
             <p>{recipe.description}</p>
             <p>{recipe.instructions}</p>
+            <h5>Comments:</h5>
+            {comments && comments.map((comment) => <CommentDetails key={comment.id} comment={comment}/>)}
             {editMode && (
                 <>
                     <form onSubmit={handleUpdate}>
-                    <input name="name" value={newRecipe.name} onChange={handleChange}></input><br/>
-                    <input name="preparation_time" value={newRecipe.preparation_time} onChange={handleChange}></input><br/>
-                    <input name="calories" value={newRecipe.calories} onChange={handleChange}></input><br/>
-                    <input name="image_url" value={newRecipe.image_url} onChange={handleChange}></input><br/>
-                    <input name="video_url" value={newRecipe.video_url} onChange={handleChange}></input><br/>
-                    <input name="description" value={newRecipe.description} onChange={handleChange}></input><br/>
-                    <textarea name="instructions" rows="25" cols="100" value={newRecipe.instructions} onChange={handleChange}></textarea><br/>
+                    <Input name="name" value={newRecipe.name} onChange={handleChange}/><br/>
+                    <Input name="preparation_time" value={newRecipe.preparation_time} onChange={handleChange}/><br/>
+                    <Input name="calories" value={newRecipe.calories} onChange={handleChange}/><br/>
+                    <Input name="image_url" value={newRecipe.image_url} onChange={handleChange}/><br/>
+                    <Input name="video_url" value={newRecipe.video_url} onChange={handleChange}/><br/>
+                    <Input name="description" value={newRecipe.description} onChange={handleChange}/><br/>
+                    <TextField name="instructions" style ={{width: '75%'}} value={newRecipe.instructions} onChange={handleChange}/><br/>
                     <button type="submit">Update Recipe</button><br/>
                     <button onClick={() => deleteRecipe(recipe)}>Delete Recipe</button>
                     </form>
