@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import './App.css';
+import IngredientContainer from "./components/IngredientContainer";
 import RecipeContainer from "./components/RecipeContainer";
 
 function App() {
@@ -10,6 +11,9 @@ function App() {
       <Switch>
         <Route exact path="/">
          <RecipeContainer/>
+        </Route>
+        <Route exact path="/ingredients">
+          <IngredientContainer/>
         </Route>
       </Switch>
       </div>
