@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Input } from '@material-ui/core';
-import { Button } from '@material-ui/core';
+import { Button, Input, FormLabel } from '@material-ui/core';
 
 function IngredientDetails({ingredient, updateIngredient}) {
 
@@ -36,12 +35,20 @@ function IngredientDetails({ingredient, updateIngredient}) {
             {editMode && (
                 <>
                     <form onSubmit={handleUpdate}>
-                    <Input name="name" value={newIngredient.name} onChange={handleChange}/><br/>
-                    <Input name="calories" value={newIngredient.calories} onChange={handleChange}/><br/>
-                    <Input name="category" value={newIngredient.category} onChange={handleChange}/><br/>
-                    <Input name="image_url" value={newIngredient.image_url} onChange={handleChange}/><br/>
-                    <Input name="portion" value={newIngredient.portion} onChange={handleChange}/><br/>
-                    <Input name="quantity" value={newIngredient.quantity} onChange={handleChange}/><br/>
+                    <FormLabel>Name: </FormLabel>
+                    <Input name="name" placeholder="Banana" value={newIngredient.name} onChange={handleChange}/><br/>
+                    <FormLabel>Calories: </FormLabel>
+                    <Input name="calories" placeholder="0...1000" value={newIngredient.calories} onChange={handleChange}/><br/>
+                    <FormLabel>Category: </FormLabel>
+                    <Input name="category" placeholder="fruit" value={newIngredient.category} onChange={handleChange}/><br/>
+                    <FormLabel>Image Url: </FormLabel>
+                    <Input name="image_url" placeholder="image_url.jpg" value={newIngredient.image_url} onChange={handleChange}/><br/>
+                    <FormLabel>Portion: </FormLabel>
+                    <Input name="portion" placeholder="1...1000" value={newIngredient.portion} onChange={handleChange}/><br/>
+                    <FormLabel>Price: </FormLabel>
+                    <Input name="price" placeholder="1...10000" value={newIngredient.price} onChange={handleChange}/><br/>
+                    <FormLabel>Quantity: </FormLabel>
+                    <Input name="quantity" placeholder="1...100" value={newIngredient.quantity} onChange={handleChange}/><br/>
                     <Button type="submit" variant="contained">Update Ingredient</Button>
                     </form>
                 </>

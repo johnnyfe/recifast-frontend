@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import CommentDetails from './CommentDetails';
-import { Input } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
+import { TextField, Input, Button } from '@material-ui/core';
 import IngredientDetails from './IngredientDetails';
+import { BASE_URL } from '../constrains';
+import IngredientForm from './IngredientForm';
 
 
 function Recipe({recipe, updateRecipe, deleteRecipe}) {
@@ -31,6 +32,29 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
         setEditMode(false);
     }
 
+    function updateIngredient(ingredient){
+        fetch(BASE_URL + 'ingredients/' + ingredient.id, {
+            method: "PATCH",
+            body: JSON.stringify(ingredient),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                  }
+        });
+        const newIngredient = ingredients.map((i) => {
+            if (i.id === ingredient.id){
+                i = ingredient
+            }
+            return i
+        })
+        setIngredients(newIngredient)
+    }
+
+    function handleAddIngredient(newIngredient){
+        const updatedIngredient = ([...ingredients, newIngredient])
+        return setIngredients(updatedIngredient)
+    }
+
     
     return (
         <div>
@@ -46,7 +70,8 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
             <h5>Comments:</h5>
             {comments && comments.map((comment) => <CommentDetails key={comment.id} comment={comment}/>)}
             <h5>Ingredients:</h5>
-            {ingredients && ingredients.map((ingredient) => <IngredientDetails key={ingredient.id} ingredient={ingredient}/>)}
+            {ingredients && ingredients.map((ingredient) => <IngredientDetails key={ingredient.id} ingredient={ingredient} updateIngredient={updateIngredient}/>)}
+            <IngredientForm handleAddIngredient={handleAddIngredient} recipe={recipe}/>
             {editMode && (
                 <>
                     <form onSubmit={handleUpdate}>
@@ -57,8 +82,8 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
                     <Input name="video_url" value={newRecipe.video_url} onChange={handleChange}/><br/>
                     <Input name="description" value={newRecipe.description} onChange={handleChange}/><br/>
                     <TextField name="instructions" style ={{width: '75%'}} value={newRecipe.instructions} onChange={handleChange}/><br/>
-                    <button type="submit">Update Recipe</button><br/>
-                    <button onClick={() => deleteRecipe(recipe)}>Delete Recipe</button>
+                    <Button type="submit" variant="outlined">Update Recipe</Button><br/>
+                    <Button onClick={() => deleteRecipe(recipe)} variant="outlined">Delete Recipe</Button>
                     </form>
                 </>
             )}
