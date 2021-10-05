@@ -4,6 +4,7 @@ import { TextField, Input, Button, FormLabel } from '@material-ui/core';
 import IngredientDetails from './IngredientDetails';
 import { BASE_URL } from '../constrains';
 import IngredientForm from './IngredientForm';
+import { useEffect } from 'react';
 
 
 function Recipe({recipe, updateRecipe, deleteRecipe}) {

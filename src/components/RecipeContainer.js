@@ -57,7 +57,7 @@ function RecipeContainer() {
         fetch(BASE_URL + 'recipes/' + recipe.id, {
             method: "DELETE"
         })
-        const recipeToDelete = recipe.filter(r => r.id !== recipe.id)
+        const recipeToDelete = recipes.filter(r => r.id !== recipe.id)
         setRecipes(recipeToDelete)
     }
 
