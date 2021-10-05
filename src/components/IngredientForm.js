@@ -2,7 +2,7 @@ import { FormLabel, Input, Button } from '@material-ui/core';
 import {React, useState } from 'react';
 import { BASE_URL } from '../constrains';
 
-function IngredientForm({handleAddIngredient, recipe}) {
+function IngredientForm({handleAddIngredient}) {
 
     const [editMode, setEditMode] = useState(false)
     const [ingredient, setIngredient] = useState({
@@ -14,10 +14,7 @@ function IngredientForm({handleAddIngredient, recipe}) {
         portion: [],
         quantity: [], 
     })
-    const [cookingList, setCookingList] = useState({
-        recipe_id: recipe.id
-    });
-
+    
     function handleChange(e){
         const updatedValue = {...ingredient}
         updatedValue[e.target.name] = e.target.value;
@@ -33,8 +30,7 @@ function IngredientForm({handleAddIngredient, recipe}) {
                 image_url: ingredient.image_url,
                 price: ingredient.price,
                 portion: ingredient.portion,
-                quantity: ingredient.quantity,
-                cooking_lists: cookingList 
+                quantity: ingredient.quantity 
             }
         fetch(BASE_URL + "ingredients", {
             method: "POST",

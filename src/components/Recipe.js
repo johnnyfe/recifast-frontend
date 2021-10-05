@@ -50,12 +50,6 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
         setIngredients(newIngredient)
     }
 
-
-    function handleAddIngredient(newIngredient){
-        const updatedIngredient = ([...ingredients, newIngredient])
-        return setIngredients(updatedIngredient)
-    }
-
     function handleSentenceSeparation(){
         const arrayOfInstructions = recipe.instructions.split('\n')
         return arrayOfInstructions
@@ -78,7 +72,6 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
             {comments && comments.map((comment) => <CommentDetails key={comment.id} comment={comment}/>)}
             <h2>Ingredients:</h2>
             {ingredients && ingredients.map((ingredient) => <IngredientDetails key={ingredient.id} ingredient={ingredient} updateIngredient={updateIngredient}/>)}
-            <IngredientForm handleAddIngredient={handleAddIngredient} recipe={recipe}/>
             {editMode && (
                 <>
                     <h3>Recipe Form:</h3>

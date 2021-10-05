@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import IngredientDetails from './IngredientDetails';
+import Ingredient from './Ingredient';
 import { BASE_URL } from '../constrains';
+import IngredientForm from './IngredientForm';
 
 
 function IngredientContainer() {
@@ -15,7 +16,7 @@ function IngredientContainer() {
 
     function populateIngredients() {
         return ingredients.map((ingredient)=>
-            <IngredientDetails  key={ingredient.id} ingredient={ingredient} updateIngredient={updateIngredient} deleteIngredient={deleteIngredient}/>
+            <Ingredient key={ingredient.id} ingredient={ingredient} updateIngredient={updateIngredient} deleteIngredient={deleteIngredient}/>
         )
     }
 
@@ -45,10 +46,16 @@ function IngredientContainer() {
         setIngredients(newingredient)
     }
 
+    function handleAddIngredient(newIngredient){
+        const updatedIngredient = ([...ingredients, newIngredient])
+        return setIngredients(updatedIngredient)
+    }
+
 
     return (
         <div>
-            <div className="recipe-container">{ingredients && populateIngredients()}</div>
+            <div className="ingredient-form"><IngredientForm handleAddIngredient={handleAddIngredient}/></div>
+            <div className="ingredients-container">{ingredients && populateIngredients()}</div>
         </div>
     );
 }
