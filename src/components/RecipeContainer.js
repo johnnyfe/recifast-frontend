@@ -74,7 +74,7 @@ function RecipeContainer() {
                <p>Find recipe:</p>
                 <input onChange={handleChange}></input> 
             </div>
-            {/* <div><RecipeForm handleAddRecipe={handleAddRecipe}/></div> */}
+            <div><RecipeForm handleAddRecipe={handleAddRecipe}/></div>
             <div className="recipe-container">{recipes && populateRecipes()}</div>
         </div>
     );
