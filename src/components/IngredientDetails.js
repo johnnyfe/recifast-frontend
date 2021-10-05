@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Input, FormLabel } from '@material-ui/core';
 
-function IngredientDetails({ingredient, updateIngredient}) {
+function IngredientDetails({ingredient, updateIngredient, deleteIngredient}) {
 
     const [editMode, setEditMode] = useState(false);
     const [newIngredient, setNewIngredient] = useState({...ingredient})
@@ -34,7 +34,7 @@ function IngredientDetails({ingredient, updateIngredient}) {
             <p>{ingredient.portion} OZ</p>
             {editMode && (
                 <>
-                    <h3>Ingredient Form:</h3>
+                    <h3>Update Ingredient Form:</h3>
                     <form onSubmit={handleUpdate}>
                     <FormLabel>Name: </FormLabel>
                     <Input name="name" placeholder="Banana" value={newIngredient.name} onChange={handleChange}/><br/>
@@ -51,6 +51,7 @@ function IngredientDetails({ingredient, updateIngredient}) {
                     <FormLabel>Quantity: </FormLabel>
                     <Input name="quantity" placeholder="1...100" value={newIngredient.quantity} onChange={handleChange}/><br/>
                     <Button type="submit" variant="outlined">Update Ingredient</Button>
+                    <Button variant="outlined" onClick={() => deleteIngredient(ingredient)}>Delete Ingredient</Button>
                     </form>
                 </>
             )}

@@ -12,9 +12,12 @@ function IngredientForm({handleAddIngredient, recipe}) {
         image_url: "",
         price: [],
         portion: [],
-        quantity: [],
-        recipe_id: [] 
+        quantity: [], 
     })
+    const [cookingList, setCookingList] = useState({
+        recipe_id: recipe.id
+    });
+
     function handleChange(e){
         const updatedValue = {...ingredient}
         updatedValue[e.target.name] = e.target.value;
@@ -31,7 +34,7 @@ function IngredientForm({handleAddIngredient, recipe}) {
                 price: ingredient.price,
                 portion: ingredient.portion,
                 quantity: ingredient.quantity,
-                recipe_id: recipe.id 
+                cooking_lists: cookingList 
             }
         fetch(BASE_URL + "ingredients", {
             method: "POST",
