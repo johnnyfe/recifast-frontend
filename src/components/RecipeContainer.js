@@ -23,7 +23,7 @@ function RecipeContainer() {
 
     function populateRecipes() {
         return recipesToDisplay.map((recipe)=>
-            <Recipe recipe={recipe} key={recipe.id} updateRecipe={updateRecipe} deleteRecipe={deleteRecipe}/>
+            <Recipe key={recipe.id} recipe={recipe}  updateRecipe={updateRecipe} handleAddRecipe={handleAddRecipe} deleteRecipe={deleteRecipe}/>
         )
     }
 
@@ -62,6 +62,8 @@ function RecipeContainer() {
     }
 
     function handleAddRecipe(newRecipe){
+        console.log(newRecipe)
+        console.log(recipes)
         const updatedRecipe = ([...recipes, newRecipe])
         return setRecipes(updatedRecipe)
     }

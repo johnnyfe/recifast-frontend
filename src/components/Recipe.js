@@ -3,7 +3,7 @@ import CommentDetails from './CommentDetails';
 import { TextField, Input, Button, FormLabel } from '@material-ui/core';
 import IngredientDetails from './IngredientDetails';
 import { BASE_URL } from '../constrains';
-import IngredientForm from './IngredientForm';
+import IngredientRecipeForm from './IngredientRecipeForm';
 import { useEffect } from 'react';
 
 
@@ -14,8 +14,13 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
     const [comments, setComment] = useState(recipe.comments)
     const [user, setUser] = useState(recipe.user.username)
     const [ingredients, setIngredients] = useState(recipe.ingredients)
+    const [newIngredients, setNewIngredients] = useState([])
 
-
+    useEffect(() => {
+        fetch(BASE_URL + 'ingredients')
+        .then(r => r.json())
+        .then(setNewIngredients)
+    }, [])
 
     function handleChange(e){
         const updatedValue = {...newRecipe}
@@ -51,6 +56,23 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
         setIngredients(newIngredient)
     }
 
+    function handleAddRecipe(ingredientData){
+        if(ingredients.includes(ingredientData.id)){
+            return ingredients
+        } else{
+            const updatedRecipe = ([...ingredients, ingredientData])
+            return setIngredients(updatedRecipe)
+        }
+    }
+
+    function deleteIngredient(ingredient){
+        fetch(BASE_URL + 'ingredients/' + ingredient.id, {
+            method: "DELETE"
+        })
+        const newingredient = ingredients.filter(p => p.id!== ingredient.id)
+        setIngredients(newingredient)
+    }
+
     function handleSentenceSeparation(){
         const arrayOfInstructions = recipe.instructions.split('\n')
         return arrayOfInstructions
@@ -72,7 +94,8 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
             <h2>Comments:</h2>
             {comments && comments.map((comment) => <CommentDetails key={comment.id} comment={comment}/>)}
             <h2>Ingredients:</h2>
-            {ingredients && ingredients.map((ingredient) => <IngredientDetails key={ingredient.id} ingredient={ingredient} updateIngredient={updateIngredient}/>)}
+            {ingredients && ingredients.map((ingredient) => <IngredientDetails key={ingredient.id} ingredient={ingredient} deleteIngredient={deleteIngredient} updateIngredient={updateIngredient}/>)}
+            <IngredientRecipeForm handleAddRecipe={handleAddRecipe} recipe={recipe} newIngredients={newIngredients}/>
             {editMode && (
                 <>
                     <h3>Recipe Form:</h3>
