@@ -1,0 +1,27 @@
+.homepage{
+    display: flex;
+    font-family: 'Fredoka One', cursive;
+    color: black;
+    width: 100%;
+    height: 800px;
+}
+
+.homepage img{
+    height: 35vw;
+    margin-left: 10vw;
+}
+
+.homepage .text-box-homepage{
+    margin-top: 5vw;
+    text-align: center;
+    margin-left: 20vw;
+}
+
+.homepage .about-homepage{
+    text-align: center;
+    margin-top: 10vw;
+}
+
+.homepage h4{
+    margin-top: 50px;
+}
