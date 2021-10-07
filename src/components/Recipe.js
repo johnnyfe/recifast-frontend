@@ -56,12 +56,12 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
         setIngredients(newIngredient)
     }
 
-    function handleAddRecipe(ingredientData){
+    function handleAddIngredientRecipe(ingredientData){
         if(ingredients.includes(ingredientData.id)){
             return ingredients
         } else{
-            const updatedRecipe = ([...ingredients, ingredientData])
-            return setIngredients(updatedRecipe)
+            const updatedIngredientRecipe = ([...ingredients, ingredientData])
+            return setIngredients(updatedIngredientRecipe)
         }
     }
 
@@ -95,7 +95,7 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
             {comments && comments.map((comment) => <CommentDetails key={comment.id} comment={comment}/>)}
             <h2>Ingredients:</h2>
             {ingredients && ingredients.map((ingredient) => <IngredientDetails key={ingredient.id} ingredient={ingredient} deleteIngredient={deleteIngredient} updateIngredient={updateIngredient}/>)}
-            <IngredientRecipeForm handleAddRecipe={handleAddRecipe} recipe={recipe} newIngredients={newIngredients}/>
+            <IngredientRecipeForm handleAddIngredientRecipe={handleAddIngredientRecipe} recipe={recipe} newIngredients={newIngredients}/>
             {editMode && (
                 <>
                     <h3>Recipe Form:</h3>

@@ -23,7 +23,7 @@ function RecipeContainer() {
 
     function populateRecipes() {
         return recipesToDisplay.map((recipe)=>
-            <Recipe key={recipe.id} recipe={recipe}  updateRecipe={updateRecipe} handleAddRecipe={handleAddRecipe} deleteRecipe={deleteRecipe}/>
+            <Recipe key={recipe.id} recipe={recipe}  updateRecipe={updateRecipe} deleteRecipe={deleteRecipe}/>
         )
     }
 
@@ -61,11 +61,11 @@ function RecipeContainer() {
         setRecipes(recipeToDelete)
     }
 
+    //CREATE
+
     function handleAddRecipe(newRecipe){
-        console.log(newRecipe)
-        console.log(recipes)
-        const updatedRecipe = ([...recipes, newRecipe])
-        return setRecipes(updatedRecipe)
+        const updatedValue = ([...recipes, newRecipe])
+        return setRecipes(updatedValue)
     }
 
 
@@ -76,7 +76,7 @@ function RecipeContainer() {
                <p>Find recipe:</p>
                 <input onChange={handleChange}></input> 
             </div>
-            <div><RecipeForm handleAddRecipe={handleAddRecipe}/></div>
+            <div className="recipe-container-form"><RecipeForm handleAddRecipe={handleAddRecipe}/></div>
             <div className="recipe-container">{recipes && populateRecipes()}</div>
         </div>
     );

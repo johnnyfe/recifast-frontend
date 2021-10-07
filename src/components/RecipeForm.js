@@ -50,7 +50,7 @@ function RecipeForm({handleAddRecipe}) {
 
     return (
         <div>
-            <div className="ingredient-form">
+            <div className="recipe-form">
             {editMode && (
                 <>
                 <h3>Create A Recipe</h3>
