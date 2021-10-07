@@ -1,0 +1,44 @@
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.navbar img{
+    width: 160px;
+    margin-left: 150px;
+}
+
+.navbar ul{
+    flex: 1;
+    text-align: right;
+}
+
+.navbar li{
+   display: inline-block;
+   font-family: 'Fjalla One', sans-serif;
+   list-style: none;
+   padding-right: 150px;
+   margin: 0 20px 20px;
+   font-size: larger;
+}
+.navbar li a{
+    text-decoration: none;
+    position: relative;
+    text-decoration: none;
+}
+
+.navbar li a::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translate(-50%);
+    background: black;
+    transition: width 0.3s;
+}
+
+.navbar li a:hover::after{
+    width: 50%;
+}
