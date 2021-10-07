@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '../constrains';
 import Recipe from './Recipe';
 import RecipeForm from './RecipeForm';
+import "../style/RecipeContainer.css"
 
 function RecipeContainer() {
 
