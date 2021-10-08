@@ -5,6 +5,7 @@ import IngredientDetails from './IngredientDetails';
 import { BASE_URL } from '../constrains';
 import IngredientRecipeForm from './IngredientRecipeForm';
 import { useEffect } from 'react';
+import "../style/Recipe.css"
 
 
 function Recipe({recipe, updateRecipe, deleteRecipe}) {
@@ -82,20 +83,31 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
     return (
         <div className="recipe-container-body">
             <h2>Recipes</h2>
-            <b>{recipe.name}</b>
+            <h3>{recipe.name}</h3>
             <p>{recipe.description}</p>
             <p>Minutes to prepare: {recipe.preparation_time} mins</p>
             <p>{recipe.calories} calories</p>
-            <img src={recipe.image_url} alt={recipe.name} width="240px"></img>
             <iframe src={recipe.video_url} title={recipe.name}></iframe>
-            {handleSentenceSeparation().map((sentence) => <p>{sentence}</p>)}
+            <div className="recipe-image">
+                <h3>Results:</h3>
+                <img src={recipe.image_url} alt={recipe.name}></img>
+            </div>
+            <h3>instructions</h3>
+            <div className="recipe-instructions">
+                {handleSentenceSeparation().map((sentence) => <p>{sentence}</p>)}
+            </div>
             <h5>User:</h5>
             <p>{user}</p>
-            <h2>Comments:</h2>
-            {comments && comments.map((comment) => <CommentDetails key={comment.id} comment={comment}/>)}
             <h2>Ingredients:</h2>
-            {ingredients && ingredients.map((ingredient) => <IngredientDetails key={ingredient.id} ingredient={ingredient} deleteIngredient={deleteIngredient} updateIngredient={updateIngredient}/>)}
+            <div className="ingredients-components-container">
+                {ingredients && ingredients.map((ingredient) => <IngredientDetails key={ingredient.id} ingredient={ingredient} deleteIngredient={deleteIngredient} updateIngredient={updateIngredient}/>)}
+            </div>
+            <h3>Add Ingredient</h3>
             <IngredientRecipeForm handleAddIngredientRecipe={handleAddIngredientRecipe} recipe={recipe} newIngredients={newIngredients}/>
+            <div className="comments-components-container">
+                <h2>Comments:</h2>
+                {comments && comments.map((comment) => <CommentDetails key={comment.id} comment={comment}/>)}
+            </div>
             {editMode && (
                 <>
                     <h3>Recipe Form:</h3>

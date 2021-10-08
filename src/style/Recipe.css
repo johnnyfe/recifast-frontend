@@ -1,0 +1,20 @@
+.ingredients-components-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5vw;
+}
+
+.recipe-container-body iframe{
+    width: 50vw;
+    height: 35vw;
+    margin-left: 25vw;
+}
+
+.recipe-image img{
+    width: 10vw;
+}
+
+.recipe-image {
+    text-align: center;
+}
