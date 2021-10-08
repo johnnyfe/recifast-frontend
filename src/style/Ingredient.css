@@ -1,0 +1,4 @@
+.self-ingredients-components-container{
+    display: flex;
+    justify-content: space-between;
+}

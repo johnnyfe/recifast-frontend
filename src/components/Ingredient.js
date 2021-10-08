@@ -1,5 +1,6 @@
 import {React, useState} from 'react';
 import { Button, Input, FormLabel } from '@material-ui/core';
+import '../style/Ingredient.css'
 
 function Ingredient({ingredient, updateIngredient, deleteIngredient}) {
 
@@ -25,7 +26,7 @@ function Ingredient({ingredient, updateIngredient, deleteIngredient}) {
 
     return (
         <div className="self-ingredients-components-container">
-            <img src={ingredient.image_url} width="200px" alt={ingredient.name}></img> <br/>
+            <img src={ingredient.image_url} width="200px" alt={ingredient.name}></img>
             <b>{ingredient.name}</b>
             <p>{ingredient.calories} calories</p>
             <p>{ingredient.category}</p>
