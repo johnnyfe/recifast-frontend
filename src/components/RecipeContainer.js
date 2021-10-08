@@ -3,6 +3,8 @@ import { BASE_URL } from '../constrains';
 import Recipe from './Recipe';
 import RecipeForm from './RecipeForm';
 import "../style/RecipeContainer.css"
+import { Input } from '@material-ui/core';
+
 
 function RecipeContainer() {
 
@@ -72,13 +74,15 @@ function RecipeContainer() {
 
     return (
         <div className="recipes-components-container">
-            <h1>Recifast</h1>
+            <div className="recipes-components">
+                <h1>Recifast</h1>
             <div className="recipe-filter">
-               <p>Find recipe:</p>
-                <input onChange={handleChange}></input> 
+                <Input onChange={handleChange}></Input>
+                <b>SEARCH BY RECIPES</b>
             </div>
-            <div className="recipe-container-form"><RecipeForm handleAddRecipe={handleAddRecipe}/></div>
-            <div className="recipe-container">{recipes && populateRecipes()}</div>
+                <div className="recipe-container-form"><RecipeForm handleAddRecipe={handleAddRecipe}/></div>
+                <div className="recipe-container">{recipes && populateRecipes()}</div>
+            </div>
         </div>
     );
 }
