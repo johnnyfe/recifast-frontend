@@ -24,9 +24,9 @@ function IngredientDetails({ingredient, updateIngredient}) {
 
 
     return (
-        <div className="ingredients-components-container">
+        <div className="ingredients-elements-container">
+            <img src={ingredient.image_url} width="200px" alt={ingredient.name}></img><br/>
             <b>{ingredient.name}</b>
-            <img src={ingredient.image_url} width="200px" alt={ingredient.name}></img>
             <p>{ingredient.calories} calories</p>
             <p>{ingredient.category}</p>
             <p>Price: ${ingredient.price}</p>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Ingredient from './Ingredient';
 import { BASE_URL } from '../constrains';
 import IngredientForm from './IngredientForm';
+import  '../style/IngredientContainer.css'
 
 
 function IngredientContainer() {
@@ -45,8 +46,9 @@ function IngredientContainer() {
 
 
     return (
-        <div>
-            <div className="ingredient-form"><IngredientForm handleAddIngredient={handleAddIngredient}/></div>
+        <div className="all-ingredients-components">
+            <h2>Ingredients</h2>
+            <div className="ingredient-form"><IngredientForm handleAddIngredient={handleAddIngredient}/></div><br/>
             <div className="ingredients-container">{ingredients && populateIngredients()}</div>
         </div>
     );

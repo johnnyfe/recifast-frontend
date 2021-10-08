@@ -76,6 +76,7 @@ function RecipeContainer() {
         <div className="recipes-components-container">
             <div className="recipes-components">
                 <h1>Recifast</h1>
+                <h2>Recipes</h2>
             <div className="recipe-filter">
                 <Input onChange={handleChange}></Input>
                 <b>SEARCH BY RECIPES</b>

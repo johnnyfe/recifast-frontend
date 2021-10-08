@@ -82,7 +82,6 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
     
     return (
         <div className="recipe-container-body">
-            <h2>Recipes</h2>
             <h3>{recipe.name}</h3>
             <p>{recipe.description}</p>
             <p>Minutes to prepare: {recipe.preparation_time} mins</p>
