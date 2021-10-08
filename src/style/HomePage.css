@@ -32,6 +32,7 @@
     line-height: 80px;
     color: transparent;
     -webkit-text-stroke: 1px black;
+    background-clip: initial;
     background: url("https://clipart.world/wp-content/uploads/2020/08/diagonal-lines-pattern-png.png");
     -webkit-background-clip: text;
     background-position:  0 0;
