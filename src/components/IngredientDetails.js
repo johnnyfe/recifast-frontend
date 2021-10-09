@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Input, FormLabel } from '@material-ui/core';
+import "../style/IngredientDetails.css"
 
 function IngredientDetails({ingredient, updateIngredient}) {
 

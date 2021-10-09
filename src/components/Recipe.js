@@ -86,7 +86,7 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
             <p>{recipe.description}</p>
             <p>Minutes to prepare: {recipe.preparation_time} mins</p>
             <p>{recipe.calories} calories</p>
-            <iframe src={recipe.video_url} title={recipe.name}></iframe>
+            <iframe allow="fullscreen" src={recipe.video_url} title={recipe.name}></iframe>
             <div className="recipe-image">
                 <h3>Results:</h3>
                 <img src={recipe.image_url} alt={recipe.name}></img>

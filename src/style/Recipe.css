@@ -9,6 +9,7 @@
     width: 50vw;
     height: 35vw;
     margin-left: 25vw;
+    border-radius: 20px;
 }
 
 .recipe-image img{
