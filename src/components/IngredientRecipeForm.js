@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { BASE_URL } from '../constrains';
 
-function IngredientRecipeForm({ newIngredients, recipe, handleAddRecipe }) {
+function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecipe }) {
 
     const [ingredientName, setIngredientName] = useState([]);
     const [selectedIngredient, setSelectedIngredient] = useState({});
@@ -43,7 +43,7 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddRecipe }) {
             },
           })
             .then((res) => res.json())
-            .then(handleAddRecipe(selectedIngredient[0]));
+            .then(handleAddIngredientRecipe(selectedIngredient[0]));
             
     }
 
