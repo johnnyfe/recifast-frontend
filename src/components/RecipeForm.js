@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Input, Button, TextField, FormLabel } from '@material-ui/core';
 import { BASE_URL } from '../constrains';
 
-function RecipeForm({handleAddRecipe}) {
+function RecipeForm({handleAddRecipe, recipes}) {
+
     const [editMode, setEditMode] = useState(false)
+
     const [recipe, setRecipe] = useState({
         name: "",
         preparation_time: [],
@@ -13,6 +15,7 @@ function RecipeForm({handleAddRecipe}) {
         description: "",
         instructions: ""
     })
+
 
     function handleChangeRecipe(e){
         const updatedValueRecipe = {...recipe}
@@ -30,7 +33,7 @@ function RecipeForm({handleAddRecipe}) {
                 video_url: recipe.video_url,
                 description: recipe.description,
                 instructions: recipe.instructions,
-                user_id: 11
+                user_id: recipes[0].user.id
             }
         fetch(BASE_URL + "recipes", {
             method: "POST",
