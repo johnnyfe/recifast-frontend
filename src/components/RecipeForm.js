@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Input, Button, TextField, FormLabel } from '@material-ui/core';
 import { BASE_URL } from '../constrains';
 import "../style/RecipeForm.css"
+import Error from '../style/Error';
 
 function RecipeForm({handleAddRecipe, recipes}) {
 
     const [editMode, setEditMode] = useState(false)
-
+    const [errors, setErrors] = useState([]);
     const [recipe, setRecipe] = useState({
         name: "",
         preparation_time: [],
@@ -26,6 +27,7 @@ function RecipeForm({handleAddRecipe, recipes}) {
 
     function handleSubmit(e){
         e.preventDefault();
+        setErrors([]);
         const newRecipe = {
                 name: recipe.name,
                 preparation_time: recipe.preparation_time,
@@ -44,9 +46,15 @@ function RecipeForm({handleAddRecipe, recipes}) {
               "Content-Type": "application/json",
             },
           })
-            .then((res) => res.json())
-            .then(handleAddRecipe);
-    }
+            .then((r) => {
+                if (r.ok) {
+                  handleAddRecipe(r)
+                } else {
+                  r.json().then((err) => setErrors(err.error));
+                }
+              });
+            }
+    
 
     function toggleEdit(){
         setEditMode(!editMode)
@@ -74,6 +82,11 @@ function RecipeForm({handleAddRecipe, recipes}) {
                     <FormLabel>Recipe Intructions: </FormLabel>
                     <TextField name="instructions" style ={{width: '75%'}} value={recipe.instructions} onChange={handleChangeRecipe}/><br/>
                     <Button type="submit" variant="outlinded">Create Recipe</Button>
+                    <p className="recipe-errors">
+                     {errors.map((err) => (
+                        <Error key={err}>{err}</Error>
+                    ))}   
+                    </p> 
                 </form>
             </>
             )}

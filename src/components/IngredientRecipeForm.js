@@ -28,8 +28,7 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log(selectedIngredient[0].id)
-        console.log(recipe.id)
+
         const newCookingList = {
                 ingredient_id: selectedIngredient[0].id,
                 recipe_id: recipe.id
