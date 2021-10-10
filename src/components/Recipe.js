@@ -91,23 +91,28 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
                 <h3>Results:</h3>
                 <img src={recipe.image_url} alt={recipe.name}></img>
             </div>
+            <div className="user-components-container">
+                <h3>User:</h3>
+                <p>{user}</p>    
+            </div>
             <h3>instructions</h3>
             <div className="recipe-instructions">
                 {handleSentenceSeparation().map((sentence) => <p>{sentence}</p>)}
             </div>
-            <h5>User:</h5>
-            <p>{user}</p>
             <h2>Ingredients:</h2>
             <div className="ingredients-components-container">
                 {ingredients && ingredients.map((ingredient) => <IngredientDetails key={ingredient.id} ingredient={ingredient} deleteIngredient={deleteIngredient} updateIngredient={updateIngredient}/>)}
             </div>
-            <h3>Add Ingredient</h3>
-            <IngredientRecipeForm handleAddIngredientRecipe={handleAddIngredientRecipe} recipe={recipe} newIngredients={newIngredients}/>
+            <div className="recipe-add-ingredient">
+                <h3>Add Ingredient</h3>
+                <IngredientRecipeForm handleAddIngredientRecipe={handleAddIngredientRecipe} recipe={recipe} newIngredients={newIngredients}/>
+            </div>
             <div className="comments-components-container">
                 <h2>Comments:</h2>
                 {comments && comments.map((comment) => <CommentDetails key={comment.id} comment={comment}/>)}
             </div>
-            {editMode && (
+            <div className="recipe-update-form">
+             {editMode && (
                 <>
                     <h3>Recipe Form:</h3>
                     <form onSubmit={handleUpdate}>
@@ -128,7 +133,9 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
                     </form>
                 </>
             )}
-            <Button variant="contained" onClick={toggleEdit}>Toggle Update Recipe</Button>
+                <Button variant="contained" onClick={toggleEdit}>Toggle Update Recipe</Button>   
+            </div>
+            
         </div>
     );
 }

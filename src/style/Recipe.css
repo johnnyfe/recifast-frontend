@@ -19,3 +19,15 @@
 .recipe-image {
     text-align: center;
 }
+
+.recipe-update-form Button{
+    background: white;
+}
+
+.recipe-add-ingredient{
+    text-align: center;
+}
+
+.user-components-container{
+    text-align: center;
+}
