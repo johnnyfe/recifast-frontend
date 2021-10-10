@@ -1,4 +1,21 @@
 .self-ingredients-components-container{
     display: flex;
-    justify-content: space-between;
+    justify-content:space-around;
+    padding: 2vw;
+    border-radius: 50px;
+    background: white;
+    margin: 25px;
+    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
 }
+
+.self-ingredients-components-container:hover{
+    box-shadow: 0 16px 50px 0 rgba(0,0,0,0.2);
+}
+
+.self-ingredients-components-container Button{
+    background: coral;
+    border-radius: 50px;
+    height: 35px;
+}
+
