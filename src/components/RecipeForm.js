@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Input, Button, TextField, FormLabel } from '@material-ui/core';
 import { BASE_URL } from '../constrains';
+import "../style/RecipeForm.css"
 
 function RecipeForm({handleAddRecipe, recipes}) {
 
