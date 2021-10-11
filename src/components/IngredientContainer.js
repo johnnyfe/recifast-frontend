@@ -17,7 +17,7 @@ function IngredientContainer() {
 
     function populateIngredients() {
         return ingredients.map((ingredient)=>
-            <Ingredient key={ingredient.id} ingredient={ingredient} updateIngredient={updateIngredient}/>
+            <Ingredient key={ingredient.id} ingredient={ingredient} updateIngredient={updateIngredient} deleteIngredient={deleteIngredient}/>
         )
     }
 
@@ -42,6 +42,14 @@ function IngredientContainer() {
     function handleAddIngredient(newIngredient){
         const updatedIngredient = ([...ingredients, newIngredient])
         return setIngredients(updatedIngredient)
+    }
+
+    function deleteIngredient(ingredient) {
+        fetch(BASE_URL + 'ingredients/' + ingredient.id, {
+            method: "DELETE"
+        })
+        const ingredientToDelete = ingredients.filter(r => r.id !== ingredient.id)
+        setIngredients(ingredientToDelete)
     }
 
 
