@@ -2,24 +2,29 @@ import { Button, FormLabel, Input } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
 import { BASE_URL } from '../constrains';
+import Error from '../style/Error';
 
 function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecipe }) {
 
     const [ingredientName, setIngredientName] = useState([]);
-    const [selectedIngredient, setSelectedIngredient] = useState({});
+    const [selectedIngredient, setSelectedIngredient] = useState(null);
     const [actionHide, setActionHide] = useState(true);
+    const [ingredientId, setIngredientId] = useState([])
+    const [errors, setErrors] = useState([]);
 
     function displayedIngredient(e) {
         e.preventDefault();
         console.log(newIngredients)
         console.log(ingredientName)
         const singleIngredient = newIngredients.filter((ingredient)=>{
-            if(ingredientName !== null){
+            if(ingredientName.length > 0){
                 return ingredient.name.toLowerCase().includes(ingredientName.toLowerCase())    
             }
                 
         })
-            setSelectedIngredient(singleIngredient);
+        if (singleIngredient.length > 0){
+            setSelectedIngredient(singleIngredient)
+        }  
     }
 
     function handleChangeIngredient(e){
@@ -28,9 +33,13 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
 
     function handleSubmit(e){
         e.preventDefault();
-
+        console.log(selectedIngredient)
+        if (selectedIngredient !== null){
+            setIngredientId(selectedIngredient[0].id)
+        }
+        console.log(ingredientId)
         const newCookingList = {
-                ingredient_id: selectedIngredient[0].id,
+                ingredient_id: ingredientId,
                 recipe_id: recipe.id
             }
         fetch(BASE_URL + "cooking_lists", {
@@ -41,10 +50,15 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
               "Content-Type": "application/json",
             },
           })
-            .then((res) => res.json())
-            .then(handleAddIngredientRecipe(selectedIngredient[0]));
-            
-    }
+          .then((r) => {
+            if (r.ok) {
+                handleAddIngredientRecipe(selectedIngredient[0])
+            } else {
+              r.json().then((err) => setErrors(err.error));
+            }
+          });
+    
+    }      
 
 
     return (
@@ -58,9 +72,15 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
             </form>
             ): (
             <form onSubmit={handleSubmit}>
+                <FormLabel>Insert ingredient name:</FormLabel>
                 <Button type="submit">Submit</Button>
+                <Button onClick={() => setActionHide(true)}>Toggle Back</Button>
             </form>)}
-            
+            <p className="recipe-errors">
+                     {errors.map((err) => (
+                        <Error key={err}>{err}</Error>
+                    ))}   
+                </p>
         </div>
     );
 }
