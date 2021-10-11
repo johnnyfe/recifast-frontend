@@ -6,9 +6,10 @@ import { BASE_URL } from '../constrains';
 import IngredientRecipeForm from './IngredientRecipeForm';
 import { useEffect } from 'react';
 import "../style/Recipe.css"
+import Error from '../style/Error';
 
 
-function Recipe({recipe, updateRecipe, deleteRecipe}) {
+function Recipe({recipe, updateRecipe, deleteRecipe, errors}) {
 
     const [newRecipe, setNewRecipe] = useState({...recipe});
     const [editMode, setEditMode] = useState(false);
@@ -130,6 +131,11 @@ function Recipe({recipe, updateRecipe, deleteRecipe}) {
                     <TextField name="instructions" style ={{width: '75%'}} value={newRecipe.instructions} onChange={handleChange}/><br/>
                     <Button type="submit" variant="outlined">Update Recipe</Button><br/>
                     <Button onClick={() => deleteRecipe(recipe)} variant="outlined">Delete Recipe</Button>
+                    <p className="recipe-errors">
+                     {errors.map((err) => (
+                        <Error key={err}>{err}</Error>
+                    ))}   
+                    </p> 
                     </form>
                 </>
             )}

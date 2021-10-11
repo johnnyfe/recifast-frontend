@@ -10,7 +10,7 @@ function RecipeContainer() {
 
     const[recipes, setRecipes] = useState([]);
     const[currentSearch, setCurrentSearch] = useState("");
-    
+    const [errors, setErrors] = useState([]);
 
     //READ
     
@@ -26,7 +26,7 @@ function RecipeContainer() {
 
     function populateRecipes() {
         return recipesToDisplay.map((recipe)=>
-            <Recipe key={recipe.id} recipe={recipe}  updateRecipe={updateRecipe} deleteRecipe={deleteRecipe}/>
+            <Recipe key={recipe.id} recipe={recipe} errors={errors} updateRecipe={updateRecipe} deleteRecipe={deleteRecipe}/>
         )
     }
 
@@ -37,6 +37,12 @@ function RecipeContainer() {
     //UPDATE
 
     function updateRecipe(recipe){
+        const newRecipe = recipes.map((r) => {
+            if (r.id === recipe.id){
+                r = recipe
+            }
+            return r
+        })
         fetch(BASE_URL + 'recipes/' + recipe.id, {
             method: "PATCH",
             body: JSON.stringify(recipe),
@@ -44,14 +50,15 @@ function RecipeContainer() {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
                   }
-        });
-        const newRecipe = recipes.map((r) => {
-            if (r.id === recipe.id){
-                r = recipe
-            }
-            return r
         })
-        setRecipes(newRecipe)
+        .then((r) => {
+            if (r.ok) {
+                setRecipes(newRecipe)
+            } else {
+              r.json().then((err) => setErrors(err.error));
+            }
+          })
+        
     }
 
     //DELETE
@@ -76,12 +83,13 @@ function RecipeContainer() {
         <div className="recipes-components-container">
             <div className="recipes-components">
                 <h1>Recifast</h1>
-                <h2>Recipes</h2>
+                
             <div className="recipe-filter">
                 <Input onChange={handleChange}></Input>
                 <b>SEARCH BY RECIPES</b>
             </div>
                 <div className="recipe-container-form"><RecipeForm recipes={recipes} handleAddRecipe={handleAddRecipe}/></div>
+                <h2>Recipes</h2>
                 <div className="recipe-container">{recipes && populateRecipes()}</div>
             </div>
         </div>
