@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Input, FormLabel } from '@material-ui/core';
 import "../style/IngredientDetails.css"
+import { Delete } from '@material-ui/icons';
 
-function IngredientDetails({ingredient, updateIngredient}) {
+function IngredientDetails({ingredient, updateIngredient, deleteIngredient}) {
 
     const [editMode, setEditMode] = useState(false);
     const [newIngredient, setNewIngredient] = useState({...ingredient})
@@ -50,6 +51,7 @@ function IngredientDetails({ingredient, updateIngredient}) {
                 </>
             )}
             <Button variant="contained" onClick={toggleEdit}>Toggle Update Ingredient Form</Button>
+            <Button onClick={()=> deleteIngredient(ingredient)}><Delete></Delete></Button>
         </div>
     );
 }

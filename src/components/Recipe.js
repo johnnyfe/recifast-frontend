@@ -68,11 +68,11 @@ function Recipe({recipe, updateRecipe, deleteRecipe, errors}) {
     }
 
     function deleteIngredient(ingredient){
-        fetch(BASE_URL + 'ingredients/' + ingredient.id, {
+        fetch(BASE_URL + 'cooking_lists/' + ingredient.id, {
             method: "DELETE"
         })
-        const newingredient = ingredients.filter(p => p.id!== ingredient.id)
-        setIngredients(newingredient)
+        const ingredientToDelete = ingredients.filter(p => p.id!== ingredient.id)
+        setIngredients(ingredientToDelete)
     }
 
     function handleSentenceSeparation(){
