@@ -53,7 +53,7 @@ function RecipeContainer() {
         })
         .then((r) => {
             if (r.ok) {
-                setRecipes(newRecipe)
+                r.json().then((data) => setRecipes(newRecipe))
             } else {
               r.json().then((err) => setErrors(err.error));
             }

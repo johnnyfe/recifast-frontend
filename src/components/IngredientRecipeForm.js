@@ -12,19 +12,24 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
     const [ingredientId, setIngredientId] = useState([])
     const [errors, setErrors] = useState([]);
 
+
+    const singleIngredient = newIngredients.filter((ingredient)=>{
+                if(ingredientName.length > 0){
+                    return ingredient.name.toLowerCase().includes(ingredientName.toLowerCase())    
+                }
+                    
+            })
+
+            
     function displayedIngredient(e) {
         e.preventDefault();
-        console.log(newIngredients)
-        console.log(ingredientName)
-        const singleIngredient = newIngredients.filter((ingredient)=>{
-            if(ingredientName.length > 0){
-                return ingredient.name.toLowerCase().includes(ingredientName.toLowerCase())    
-            }
-                
-        })
-        if (singleIngredient.length > 0){
-            setSelectedIngredient(singleIngredient)
-        }  
+        if(singleIngredient.length > 0) {
+         setSelectedIngredient(singleIngredient[0]);
+        setActionHide(false);   
+        } else {
+            setSelectedIngredient(null)
+            setActionHide(false);
+        }
     }
 
     function handleChangeIngredient(e){
@@ -35,9 +40,8 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
         e.preventDefault();
         console.log(selectedIngredient)
         if (selectedIngredient !== null){
-            setIngredientId(selectedIngredient[0].id)
+            setIngredientId(selectedIngredient.id)
         }
-        console.log(ingredientId)
         const newCookingList = {
                 ingredient_id: ingredientId,
                 recipe_id: recipe.id
@@ -52,12 +56,14 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
           })
           .then((r) => {
             if (r.ok) {
-                r.json().then((data) => handleAddIngredientRecipe(selectedIngredient[0]))
+                r.json().then((data) => {
+                    handleAddIngredientRecipe(selectedIngredient)
+                    setIngredientId([])
+                    })
             } else {
               r.json().then((err) => setErrors(err.error));
             }
           });
-    
     }      
 
 
@@ -68,7 +74,6 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
                 <FormLabel>Insert ingredient name:</FormLabel>
                 <Input value={ingredientName} onChange={handleChangeIngredient}></Input><br/>
                 <Button type="submit">Get ingredient</Button>
-                <Button onClick={() => setActionHide(false)}>Submit</Button>
             </form>
             ): (
             <form onSubmit={handleSubmit}>
