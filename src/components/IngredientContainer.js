@@ -55,7 +55,7 @@ function IngredientContainer() {
 
     return (
         <div className="all-ingredients-components">
-            <h2>Ingredients</h2>
+            <h1>Ingredients</h1>
             <div className="ingredient-form"><IngredientForm handleAddIngredient={handleAddIngredient}/></div><br/>
             <div className="ingredients-container">{ingredients && populateIngredients()}</div>
         </div>

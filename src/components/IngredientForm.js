@@ -3,6 +3,7 @@ import { Create, Send } from '@material-ui/icons';
 import {React, useState } from 'react';
 import { BASE_URL } from '../constrains';
 import Error from '../style/Error';
+import "../style/IngredientForm.css"
 
 function IngredientForm({handleAddIngredient}) {
 
@@ -57,37 +58,35 @@ function IngredientForm({handleAddIngredient}) {
     }
 
     return (
-        <div>
-            <div className="ingredient-form">
-            {editMode && (
-                <>
-                <h3>Create A New Ingredient</h3>
-                <form onSubmit={handleSubmit}>
-                    <FormLabel>Name: </FormLabel>
-                    <Input name="name" placeholder="Banana" value={ingredient.name} onChange={handleChange} ></Input> <br/>
-                    <FormLabel>Calories: </FormLabel>
-                    <Input name="calories" placeholder="0...1000" value={ingredient.calories} onChange={handleChange} ></Input><br/>
-                    <FormLabel>Category: </FormLabel>
-                    <Input name="category" placeholder="fruit" value={ingredient.category} onChange={handleChange} ></Input><br/>
-                    <FormLabel>Image Url: </FormLabel>
-                    <Input name="image_url" placeholder="image_url.jpg" value={ingredient.image_url} onChange={handleChange} ></Input><br/>
-                    <FormLabel>Portion: </FormLabel>
-                    <Input name="portion" placeholder="1...1000" value={ingredient.portion} onChange={handleChange}></Input><br/>
-                    <FormLabel>Price: </FormLabel>
-                    <Input name="price" placeholder="1...10000" value={ingredient.price} onChange={handleChange}></Input><br/>
-                    <FormLabel>Quantity: </FormLabel>
-                    <Input name="quantity" placeholder="1...100" value={ingredient.quantity} onChange={handleChange}></Input><br/>
-                    <Button type="submit" variant="outlinded"><Send></Send>Create Ingredient</Button>
-                    <p className="ingredient-errors">
-                     {errors.map((err) => (
-                        <Error key={err}>{err}</Error>
-                    ))}   
-                    </p>
-                </form>
-            </>
-            )}
-            <Button variant='contained' onClick={toggleEdit}><Create></Create>Toggle Create New Ingredient</Button>
-            </div>
+        <div className="ingredient-form">
+                {editMode && (
+                    <>
+                    <h3>Create A New Ingredient</h3>
+                    <form onSubmit={handleSubmit}>
+                        <FormLabel>Name: </FormLabel>
+                        <Input name="name" placeholder="Banana" value={ingredient.name} onChange={handleChange} ></Input> <br/>
+                        <FormLabel>Calories: </FormLabel>
+                        <Input name="calories" placeholder="0...1000" value={ingredient.calories} onChange={handleChange} ></Input><br/>
+                        <FormLabel>Category: </FormLabel>
+                        <Input name="category" placeholder="fruit" value={ingredient.category} onChange={handleChange} ></Input><br/>
+                        <FormLabel>Image Url: </FormLabel>
+                        <Input name="image_url" placeholder="image_url.jpg" value={ingredient.image_url} onChange={handleChange} ></Input><br/>
+                        <FormLabel>Portion: </FormLabel>
+                        <Input name="portion" placeholder="1...1000" value={ingredient.portion} onChange={handleChange}></Input><br/>
+                        <FormLabel>Price: </FormLabel>
+                        <Input name="price" placeholder="1...10000" value={ingredient.price} onChange={handleChange}></Input><br/>
+                        <FormLabel>Quantity: </FormLabel>
+                        <Input name="quantity" placeholder="1...100" value={ingredient.quantity} onChange={handleChange}></Input><br/>
+                        <Button type="submit" variant="outlinded"><Send></Send>Create Ingredient</Button>
+                        <p className="ingredient-errors">
+                        {errors.map((err) => (
+                            <Error key={err}>{err}</Error>
+                        ))}   
+                        </p>
+                    </form>
+                </>
+                )}
+                    <Button variant='contained' onClick={toggleEdit}><Create></Create>Toggle Create New Ingredient</Button>
         </div>
     );
 }
