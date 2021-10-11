@@ -76,7 +76,7 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
                 <Button type="submit">Submit</Button>
                 <Button onClick={() => setActionHide(true)}>Toggle Back</Button>
             </form>)}
-            <p className="recipe-errors">
+            <p className="ingredient-recipe-errors">
                      {errors.map((err) => (
                         <Error key={err}>{err}</Error>
                     ))}   

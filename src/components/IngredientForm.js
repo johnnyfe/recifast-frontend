@@ -1,10 +1,12 @@
 import { FormLabel, Input, Button } from '@material-ui/core';
 import {React, useState } from 'react';
 import { BASE_URL } from '../constrains';
+import Error from '../style/Error';
 
 function IngredientForm({handleAddIngredient}) {
 
     const [editMode, setEditMode] = useState(false)
+    const [errors, setErrors] = useState([]);
     const [ingredient, setIngredient] = useState({
         name: "",
         calories: [],
@@ -40,8 +42,13 @@ function IngredientForm({handleAddIngredient}) {
               "Content-Type": "application/json",
             },
           })
-            .then((res) => res.json())
-            .then(handleAddIngredient);
+            .then((r) => {
+                if (r.ok) {
+                    handleAddIngredient(r)
+                } else {
+                  r.json().then((err) => setErrors(err.error));
+                }
+              });
     }
 
     function toggleEdit(){
@@ -70,6 +77,11 @@ function IngredientForm({handleAddIngredient}) {
                     <FormLabel>Quantity: </FormLabel>
                     <Input name="quantity" placeholder="1...100" value={ingredient.quantity} onChange={handleChange}></Input><br/>
                     <Button type="submit" variant="outlinded">Create Ingredient</Button>
+                    <p className="ingredient-errors">
+                     {errors.map((err) => (
+                        <Error key={err}>{err}</Error>
+                    ))}   
+                    </p>
                 </form>
             </>
             )}
