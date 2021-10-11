@@ -48,7 +48,7 @@ function RecipeForm({handleAddRecipe, recipes}) {
           })
             .then((r) => {
                 if (r.ok) {
-                  handleAddRecipe(r)
+                    r.json().then((data) => handleAddRecipe(data))
                 } else {
                   r.json().then((err) => setErrors(err.error));
                 }

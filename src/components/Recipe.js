@@ -98,7 +98,7 @@ function Recipe({recipe, updateRecipe, deleteRecipe, errors}) {
             </div>
             <h3>instructions</h3>
             <div className="recipe-instructions">
-                {handleSentenceSeparation().map((sentence) => <p>{sentence}</p>)}
+                {handleSentenceSeparation().map((sentence) => <p key={sentence.id}>{sentence}</p>)}
             </div>
             <h2>Ingredients:</h2>
             <div className="ingredients-components-container">
@@ -106,7 +106,7 @@ function Recipe({recipe, updateRecipe, deleteRecipe, errors}) {
             </div>
             <div className="recipe-add-ingredient">
                 <h3>Add Ingredient</h3>
-                <IngredientRecipeForm handleAddIngredientRecipe={handleAddIngredientRecipe} recipe={recipe} newIngredients={newIngredients}/>
+                <IngredientRecipeForm handleAddIngredientRecipe={handleAddIngredientRecipe} key={newIngredients.id} recipe={recipe} newIngredients={newIngredients}/>
             </div>
             <div className="comments-components-container">
                 <h2>Comments:</h2>

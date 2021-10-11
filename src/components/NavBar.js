@@ -9,9 +9,9 @@ function NavBar() {
         <div className="navbar">
                 <img className="logo-image" src={logo} alt="recifast-logo"></img>
             <ul>
-                <li><a><Link to="/">Homepage</Link></a></li>
-                <li><a><Link to="/recipes">Recipes</Link></a></li>
-                <li><a><Link to="/ingredients">Ingredients</Link></a></li>
+                <li><Link to="/">Homepage</Link></li>
+                <li><Link to="/recipes">Recipes</Link></li>
+                <li><Link to="/ingredients">Ingredients</Link></li>
             </ul>
         </div>
     );

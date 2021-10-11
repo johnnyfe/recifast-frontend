@@ -52,7 +52,7 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
           })
           .then((r) => {
             if (r.ok) {
-                handleAddIngredientRecipe(selectedIngredient[0])
+                r.json().then((data) => handleAddIngredientRecipe(selectedIngredient[0]))
             } else {
               r.json().then((err) => setErrors(err.error));
             }

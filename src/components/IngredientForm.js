@@ -44,7 +44,7 @@ function IngredientForm({handleAddIngredient}) {
           })
             .then((r) => {
                 if (r.ok) {
-                    handleAddIngredient(r)
+                    r.json().then((data) => handleAddIngredient(data))
                 } else {
                   r.json().then((err) => setErrors(err.error));
                 }
