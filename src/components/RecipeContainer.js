@@ -4,6 +4,7 @@ import Recipe from './Recipe';
 import RecipeForm from './RecipeForm';
 import "../style/RecipeContainer.css"
 import { Input } from '@material-ui/core';
+import { Search } from '@material-ui/icons';
 
 
 function RecipeContainer() {
@@ -85,7 +86,7 @@ function RecipeContainer() {
                 <h1>Recifast</h1>
                 
             <div className="recipe-filter">
-                <Input onChange={handleChange}></Input>
+                <Search></Search><Input onChange={handleChange}></Input>
                 <b>SEARCH BY RECIPES</b>
             </div>
                 <div className="recipe-container-form"><RecipeForm recipes={recipes} handleAddRecipe={handleAddRecipe}/></div>

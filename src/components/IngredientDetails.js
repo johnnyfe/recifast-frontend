@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Input, FormLabel } from '@material-ui/core';
 import "../style/IngredientDetails.css"
-import { Delete } from '@material-ui/icons';
+import { Create, Delete, Update } from '@material-ui/icons';
 
 function IngredientDetails({ingredient, updateIngredient, deleteIngredient}) {
 
@@ -46,11 +46,11 @@ function IngredientDetails({ingredient, updateIngredient, deleteIngredient}) {
                     <Input name="image_url" placeholder="image_url.jpg" value={newIngredient.image_url} onChange={handleChange}/><br/>
                     <FormLabel>Price: </FormLabel>
                     <Input name="price" placeholder="1...10000" value={newIngredient.price} onChange={handleChange}/><br/>
-                    <Button type="submit" variant="outlined">Update Ingredient</Button>
+                    <Button type="submit" variant="outlined"><Update></Update>Update Ingredient</Button>
                     </form>
                 </>
             )}
-            <Button variant="contained" onClick={toggleEdit}>Toggle Update Ingredient Form</Button>
+            <Button variant="contained" onClick={toggleEdit}><Create></Create>Toggle Update Ingredient</Button>
             <Button onClick={()=> deleteIngredient(ingredient)}><Delete></Delete></Button>
         </div>
     );

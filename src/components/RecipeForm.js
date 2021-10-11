@@ -3,6 +3,7 @@ import { Input, Button, TextField, FormLabel } from '@material-ui/core';
 import { BASE_URL } from '../constrains';
 import "../style/RecipeForm.css"
 import Error from '../style/Error';
+import { Create, Delete, Send } from '@material-ui/icons';
 
 function RecipeForm({handleAddRecipe, recipes}) {
 
@@ -81,7 +82,7 @@ function RecipeForm({handleAddRecipe, recipes}) {
                     <Input name="description" value={recipe.description} onChange={handleChangeRecipe}/><br/>
                     <FormLabel>Recipe Intructions: </FormLabel>
                     <TextField name="instructions" style ={{width: '75%'}} value={recipe.instructions} onChange={handleChangeRecipe}/><br/>
-                    <Button type="submit" variant="outlinded">Create Recipe</Button>
+                    <Button type="submit" variant="outlinded"><Send></Send>Create Recipe</Button>
                     <p className="recipe-errors">
                      {errors.map((err) => (
                         <Error key={err}>{err}</Error>
@@ -90,7 +91,7 @@ function RecipeForm({handleAddRecipe, recipes}) {
                 </form>
             </>
             )}
-            <Button variant='contained' onClick={toggleEdit}>Toggle Create Recipe Form</Button>
+            <Button variant='contained' onClick={toggleEdit}><Create></Create>Toggle Create Recipe Form</Button>
             </div>
         </div>
     );

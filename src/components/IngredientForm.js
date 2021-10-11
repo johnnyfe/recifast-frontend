@@ -1,4 +1,5 @@
 import { FormLabel, Input, Button } from '@material-ui/core';
+import { Create, Send } from '@material-ui/icons';
 import {React, useState } from 'react';
 import { BASE_URL } from '../constrains';
 import Error from '../style/Error';
@@ -76,7 +77,7 @@ function IngredientForm({handleAddIngredient}) {
                     <Input name="price" placeholder="1...10000" value={ingredient.price} onChange={handleChange}></Input><br/>
                     <FormLabel>Quantity: </FormLabel>
                     <Input name="quantity" placeholder="1...100" value={ingredient.quantity} onChange={handleChange}></Input><br/>
-                    <Button type="submit" variant="outlinded">Create Ingredient</Button>
+                    <Button type="submit" variant="outlinded"><Send></Send>Create Ingredient</Button>
                     <p className="ingredient-errors">
                      {errors.map((err) => (
                         <Error key={err}>{err}</Error>
@@ -85,7 +86,7 @@ function IngredientForm({handleAddIngredient}) {
                 </form>
             </>
             )}
-            <Button variant='contained' onClick={toggleEdit}>Toggle Create New Ingredient</Button>
+            <Button variant='contained' onClick={toggleEdit}><Create></Create>Toggle Create New Ingredient</Button>
             </div>
         </div>
     );

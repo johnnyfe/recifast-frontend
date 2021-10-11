@@ -7,6 +7,8 @@ import IngredientRecipeForm from './IngredientRecipeForm';
 import { useEffect } from 'react';
 import "../style/Recipe.css"
 import Error from '../style/Error';
+import { Create, Delete, Send, Update } from '@material-ui/icons';
+
 
 
 function Recipe({recipe, updateRecipe, deleteRecipe, errors}) {
@@ -129,8 +131,8 @@ function Recipe({recipe, updateRecipe, deleteRecipe, errors}) {
                     <Input name="video_url" value={newRecipe.video_url} onChange={handleChange}/><br/>
                     <Input name="description" value={newRecipe.description} onChange={handleChange}/><br/>
                     <TextField name="instructions" style ={{width: '75%'}} value={newRecipe.instructions} onChange={handleChange}/><br/>
-                    <Button type="submit" variant="outlined">Update Recipe</Button><br/>
-                    <Button onClick={() => deleteRecipe(recipe)} variant="outlined">Delete Recipe</Button>
+                    <Button type="submit" variant="outlined"><Update></Update>Update Recipe</Button><br/>
+                    <Button onClick={() => deleteRecipe(recipe)} variant="outlined"><Delete></Delete>Delete Recipe</Button>
                     <p className="recipe-errors">
                      {errors.map((err) => (
                         <Error key={err}>{err}</Error>
@@ -139,7 +141,7 @@ function Recipe({recipe, updateRecipe, deleteRecipe, errors}) {
                     </form>
                 </>
             )}
-                <Button variant="contained" onClick={toggleEdit}>Toggle Update Recipe</Button>   
+                <Button variant="contained" onClick={toggleEdit}><Create></Create>Toggle Update Recipe</Button>   
             </div>
             
         </div>
