@@ -1,6 +1,6 @@
 import { Button, FormLabel, Input } from '@material-ui/core';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BASE_URL } from '../constrains';
 import Error from '../style/Error';
 import { GetApp, Send } from '@material-ui/icons';
@@ -14,6 +14,7 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
     const [errors, setErrors] = useState([]);
     const [imageIngredient, setImageIngredient] = useState("")
 
+    
 
     const singleIngredient = newIngredients.filter((ingredient)=>{
                 if(ingredientName.length > 0){
@@ -21,15 +22,21 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
                 }
                     
             })
+
+    useEffect(() => {
+        setSelectedIngredient(singleIngredient[0])
+    })
+
             
     function displayedIngredient(e) {
         e.preventDefault();
         if(singleIngredient.length > 0) {
-         setSelectedIngredient(singleIngredient[0]);
+         setIngredientId(selectedIngredient.id)
          setImageIngredient(singleIngredient[0].image_url);  
          setActionHide(false);
           
         } else {
+            setIngredientId([])
             setSelectedIngredient(null);
             setImageIngredient(""); 
             setActionHide(false);
@@ -42,10 +49,7 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log(selectedIngredient)
-        if (selectedIngredient !== null){
-            setIngredientId(selectedIngredient.id)
-        }
+        console.log(ingredientId)
         const newCookingList = {
                 ingredient_id: ingredientId,
                 recipe_id: recipe.id
