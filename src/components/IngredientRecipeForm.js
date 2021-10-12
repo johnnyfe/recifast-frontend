@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { BASE_URL } from '../constrains';
 import Error from '../style/Error';
 import { GetApp, Send } from '@material-ui/icons';
+import "../style/IngredientRecipeForm.css"
 
 function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecipe }) {
 
@@ -13,7 +14,13 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
     const [ingredientId, setIngredientId] = useState([])
     const [errors, setErrors] = useState([]);
     const [imageIngredient, setImageIngredient] = useState("")
+    const [ingredients, setIngredients] = useState([]);
 
+    useEffect(() => {
+        fetch(BASE_URL + 'ingredients')
+        .then(r => r.json())
+        .then(setIngredients)
+    }, [])
     
 
     const singleIngredient = newIngredients.filter((ingredient)=>{
@@ -94,7 +101,11 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
                      {errors.map((err) => (
                         <Error key={err}>{err}</Error>
                     ))}   
-                </p>
+            </p>
+            <h3>Available Ingredients</h3>
+            <div className="ingredient-list">
+                {ingredients.map((ingredient) => <p>{ingredient.name}</p>)}
+            </div>
         </div>
     );
 }
