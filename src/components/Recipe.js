@@ -7,7 +7,7 @@ import IngredientRecipeForm from './IngredientRecipeForm';
 import { useEffect } from 'react';
 import "../style/Recipe.css"
 import Error from '../style/Error';
-import { Create, Delete, Send, Update } from '@material-ui/icons';
+import { Create, Delete, Update } from '@material-ui/icons';
 
 
 
@@ -15,8 +15,8 @@ function Recipe({recipe, updateRecipe, deleteRecipe, errors}) {
 
     const [newRecipe, setNewRecipe] = useState({...recipe});
     const [editMode, setEditMode] = useState(false);
-    const [comments, setComment] = useState(recipe.comments)
-    const [user, setUser] = useState(recipe.user.username)
+    const [comments] = useState(recipe.comments)
+    const [user] = useState(recipe.user.username)
     const [ingredients, setIngredients] = useState(recipe.ingredients)
     const [newIngredients, setNewIngredients] = useState([])
 

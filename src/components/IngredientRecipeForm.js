@@ -27,12 +27,14 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
                 if(ingredientName.length > 0){
                     return ingredient.name.toLowerCase().includes(ingredientName.toLowerCase())    
                 }
-                    
+                else {
+                    return null
+                }  
             })
 
     useEffect(() => {
         setSelectedIngredient(singleIngredient[0])
-    })
+    }, [singleIngredient])
 
             
     function displayedIngredient(e) {
@@ -95,7 +97,7 @@ function IngredientRecipeForm({ newIngredients, recipe, handleAddIngredientRecip
                 <FormLabel>Insert ingredient name:</FormLabel>
                 <Button type="submit"><Send></Send>Submit</Button>
                 <Button onClick={() => setActionHide(true)}>Toggle Back</Button>
-                <img src={imageIngredient} width="50px" style={{borderRadius: "25px"}}></img>
+                <img src={imageIngredient} width="50px" alt={imageIngredient.name} style={{borderRadius: "25px"}}></img>
             </form>)}
             <p className="ingredient-recipe-errors">
                      {errors.map((err) => (

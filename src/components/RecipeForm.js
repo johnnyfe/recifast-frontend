@@ -3,7 +3,7 @@ import { Input, Button, TextField, FormLabel } from '@material-ui/core';
 import { BASE_URL } from '../constrains';
 import "../style/RecipeForm.css"
 import Error from '../style/Error';
-import { Create, Delete, Send } from '@material-ui/icons';
+import { Create, Send } from '@material-ui/icons';
 
 function RecipeForm({handleAddRecipe, recipes}) {
 
